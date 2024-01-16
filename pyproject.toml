@@ -1,0 +1,37 @@
+[project]
+name = "dstask"
+version = "0.0.1"
+description = "Python functions can be decorated to push/pull arguments from supported data-stores"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {file = "LICENSE.txt"}
+keywords = ["python", "distributed-systems", "redis", "task", "workflow"]
+authors = [
+    {name = "Artemiy Bozhenok"}
+]
+maintainers = [
+    {name = "Artemiy Bozhenok"}
+]
+classifiers = [
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Distributed Systems",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3 :: Only",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/abozhenok/dstask"
+"Bug Reports" = "https://github.com/abozhenok/dstask/issues"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
