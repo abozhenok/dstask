@@ -1,2 +1,2 @@
 # dstask
-Turns python functions into tasks that can be distributed across systems and uses Redis to communicate variable state
+Enables python functions to communicate state/variables using a data medium
