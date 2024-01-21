@@ -23,8 +23,9 @@ class XCom:
         return self.workflow_id
 
     def return_data(self, **kwargs) -> None:
+        unique_id = self._unique_id()
         for key, value in kwargs.items():
-            self.backend.push(key, value)
+            self.backend.push(f"{unique_id}:{key}", value)
 
     def pull_arguments(self, keys: List[str]) -> Union[Tuple, Any]:
         unique_id = self._unique_id()
