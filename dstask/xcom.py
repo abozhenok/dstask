@@ -5,12 +5,8 @@ class XCom:
     """
     A data store used for communicating variables and state between tasks in a distributed system
     """
-    def __init__(
-        self,
-        backend,
-        workflow_id: str = None,
-        task_id: str = None
-    ):
+
+    def __init__(self, backend, workflow_id: str = None, task_id: str = None):
         self.backend = backend
         # the workflow must have a unique id
         self.workflow_id = workflow_id
@@ -29,10 +25,7 @@ class XCom:
 
     def pull_arguments(self, keys: List[str]) -> Union[Tuple, Any]:
         unique_id = self._unique_id()
-        returns = [
-            self.backend.pull(f"{unique_id}:{key}")
-            for key in keys
-        ]
+        returns = [self.backend.pull(f"{unique_id}:{key}") for key in keys]
 
         if len(returns) == 1:
             return returns[0]

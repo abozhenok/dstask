@@ -14,7 +14,9 @@ def ds_task(fn=None, backend: XcomBackend = None, last_task: bool = False):
             workflow_id = os.environ.get("WORKFLOW_ID", None)
 
             if workflow_id is None:
-                raise RuntimeError(f"Failed to set WORKFLOW_ID, tasks must have a unique key")
+                raise RuntimeError(
+                    f"Failed to set WORKFLOW_ID, tasks must have a unique key"
+                )
 
             signature = inspect.signature(fn)
             kwargs = {
@@ -23,7 +25,7 @@ def ds_task(fn=None, backend: XcomBackend = None, last_task: bool = False):
                 if v.default is not inspect.Parameter.empty
             }
             args_spec = inspect.getfullargspec(fn).args
-            args_to_pull = args_spec[len(args):]
+            args_to_pull = args_spec[len(args) :]
             # remove arg to pull if in kwargs
             args_to_pull = [arg for arg in args_to_pull if arg not in kwargs]
             # task_id must be set if you want to execute the same task in parallel
@@ -39,7 +41,9 @@ def ds_task(fn=None, backend: XcomBackend = None, last_task: bool = False):
                     # store return types
                     if returns is not None:
                         if not isinstance(returns, Dict):
-                            raise RuntimeError(f"Task returned {type(returns)}, expected 'dict'")
+                            raise RuntimeError(
+                                f"Task returned {type(returns)}, expected 'dict'"
+                            )
                         x_com.return_data(**returns)
                 except CancelTaskEvent:
                     clean_up = True
@@ -48,6 +52,7 @@ def ds_task(fn=None, backend: XcomBackend = None, last_task: bool = False):
                     x_com.clean_up()
 
             return inner(*args, *task_vars)
+
         return wrapper
 
     if backend is None:

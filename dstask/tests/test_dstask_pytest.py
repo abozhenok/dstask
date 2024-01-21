@@ -3,9 +3,7 @@ import os
 from uuid import uuid4
 from fakeredis import FakeRedis
 from unittest.mock import patch
-from dstask.backend import (
-    RedisBackend
-)
+from dstask.backend import RedisBackend
 from pandas import DataFrame
 from dstask.task import ds_task
 
@@ -24,7 +22,7 @@ def test_vanilla_with_redis(mock):
             "str_type": "e = mc^2",
             "df": DataFrame(),
             "dictionary_type": {"test": 1},
-            "number": 9.81
+            "number": 9.81,
         }
 
     @ds_task(backend=backend)

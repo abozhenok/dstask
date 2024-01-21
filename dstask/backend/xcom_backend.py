@@ -9,7 +9,6 @@ from dateutil.parser import parse
 
 
 class XcomBackend(ABC):
-
     def __init__(self):
         pass
 

@@ -4,7 +4,6 @@ from .xcom_backend import XcomBackend
 
 
 class AsyncRedisBackend(XcomBackend):
-
     def __init__(self, host: str = None, port: int = None, db: int = None):
         super().__init__()
         self.redis = AsyncRedis(host=host, port=port, db=db)
@@ -20,6 +19,3 @@ class AsyncRedisBackend(XcomBackend):
 
     def teardown(self):
         self.redis.close()
-
-
-
