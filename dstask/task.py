@@ -15,7 +15,7 @@ def ds_task(fn=None, backend: XcomBackend = None, last_task: bool = False):
 
             if workflow_id is None:
                 raise RuntimeError(
-                    f"Failed to set WORKFLOW_ID, tasks must have a unique key"
+                    "Failed to set WORKFLOW_ID, tasks must have a unique key"
                 )
 
             signature = inspect.signature(fn)
@@ -25,7 +25,7 @@ def ds_task(fn=None, backend: XcomBackend = None, last_task: bool = False):
                 if v.default is not inspect.Parameter.empty
             }
             args_spec = inspect.getfullargspec(fn).args
-            args_to_pull = args_spec[len(args) :]
+            args_to_pull = args_spec[len(args):]
             # remove arg to pull if in kwargs
             args_to_pull = [arg for arg in args_to_pull if arg not in kwargs]
             # task_id must be set if you want to execute the same task in parallel
