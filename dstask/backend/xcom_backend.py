@@ -13,7 +13,7 @@ class XcomBackend(ABC):
         pass
 
     @staticmethod
-    def to_bytes(value: Any):
+    def to_bytes(value):
         """
         Convert value to bytes
         :param value:
@@ -22,9 +22,8 @@ class XcomBackend(ABC):
         if isinstance(value, DataFrame):
             return serialize_pandas(value).to_pybytes()
         elif isinstance(value, datetime):
-            return str(value)
-        else:
-            return pickle.dumps(value)
+            value = str(value)
+        return pickle.dumps(value)
 
     @staticmethod
     def from_bytes(value: Any):
